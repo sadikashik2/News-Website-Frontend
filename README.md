@@ -1,26 +1,40 @@
-# NewsToday - Frontend News Website
+# 📰 NewsToday - Frontend News Website
 
-A **responsive news website frontend** built with **React**, **Vite**, and **Tailwind CSS**, inspired by popular news portals like Prothom Alo and BBC.
+A **responsive news website frontend** built with **React**, **Vite**, and **Tailwind CSS**
 
-**Live Demo:**  
-https://news-website-frontend-psi.vercel.app/
-
+**Live Demo:** [https://news-website-frontend-psi.vercel.app](https://news-website-frontend-psi.vercel.app)
 ---
 
-## Project Setup
+## 🚀 Project Setup
 
 Follow these steps to run the project locally:
 
 1. **Clone the repository:**
+
 ```bash
-git clone <your-github-repo-link>
-cd <project-folder>
-Install dependencies: npm install
-Run the development server: npm run dev
-Open your browser and go to http://localhost:5173 (or the port Vite shows) to view the app.
+git clone https://github.com/yourusername/news-today.git
+cd news-today
+```
 
-**Folder Structure**
+2. **Install dependencies:**
 
+```bash
+npm install
+```
+
+3. **Run the development server:**
+
+```bash
+npm run dev
+```
+
+4. Open your browser and go to [http://localhost:5173](http://localhost:5173) to view the app.
+
+---
+
+## 📁 Folder Structure
+
+```
 src/
  ├─ assets/            # Images for news articles
  ├─ components/        # Reusable components
@@ -35,45 +49,53 @@ src/
  │    └─ NewsDetails.jsx
  ├─ App.jsx            # Layout component
  └─ main.jsx           # App entry point
-
-## Features
-
-1. **Responsive Design**
-   - Works seamlessly on **desktop, tablet, and mobile** devices.
-
-2. **Header & Navigation**
-   - Logo and site name
-   - Navigation menu with categories: Home, National, International, Sports, Technology
-   - Mobile-friendly hamburger menu with sliding panel
-
-3. **Home Page**
-   - Featured news section
-   - News list/grid displaying:
-     - Thumbnail image
-     - Title
-     - Short description
-     - Category
-     - Publish date
-   - Skeleton loader for news cards while loading
-
-4. **News Details Page**
-   - Full news content with proper typography
-   - Large cover image
-   - Title, category, and date
-   - Related news section
-
-5. **Category-based Filtering**
-   - Filter news based on category
-
+```
 
 ---
 
-## Technologies Used
+## ✨ Features
 
-- **React**
-- **Vite**
-- **Tailwind CSS v4**
-- **React Router v7**
-- **React Icons**
+* **Responsive Design**
+  Works seamlessly on **desktop, tablet, and mobile** devices.
+
+* **Header & Navigation**
+
+  * Logo and site name
+  * Navigation menu with categories: Home, National, International, Sports, Technology
+  * Mobile-friendly hamburger menu with sliding panel
+
+* **Home Page**
+
+  * Trending news section
+  * News grid displaying:
+
+    * Thumbnail image
+    * Title
+    * Short description
+    * Category
+    * Publish date
+  * Skeleton loader for news cards while loading
+
+* **News Details Page**
+
+  * Full news content with proper typography
+  * Large cover image
+  * Title, category, and date
+  * Related news section
+
+* **Category-based Filtering**
+
+  * Filter news based on category
 
 ---
+
+## 🛠️ Technologies Used
+
+* **React**
+* **Vite**
+* **Tailwind CSS v4**
+* **React Router v7**
+* **React Icons**
+
+---
+
