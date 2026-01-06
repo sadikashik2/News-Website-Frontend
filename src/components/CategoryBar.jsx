@@ -1,13 +1,11 @@
+/**
+ * Displays a horizontal scrollable list of categories.
+ * Highlights the selected category.
+ */
 const categories = ["All", "National", "International", "Sports", "Technology"];
-
 export default function CategoryBar({ selected, onChange }) {
   return (
-    <div className="border-b relative h-10 md:h-12">
-      {/* Left Fade */}
-      <div className="absolute left-0 top-0 bottom-0 w-6 pointer-events-none bg-linear-to-r from-white"></div>
-      {/* Right Fade */}
-      <div className="absolute right-0 top-0 bottom-0 w-6 pointer-events-none bg-linear-to-l from-white"></div>
-
+    <div className="border-b h-10 md:h-12">
       <div className="max-w-7xl mx-auto px-4 h-full overflow-x-auto scrollbar-hide">
         <div className="flex items-center gap-4 h-full min-w-max">
           {categories.map((cat) => (

@@ -13,28 +13,27 @@ export default function Header() {
   const location = useLocation();
 
   const today = new Date();
-  const options = { weekday: "short", month: "short", day: "numeric", year: "numeric" };
-  const formattedDate = today.toLocaleDateString("en-US", options);
+  const formattedDate = today.toLocaleDateString("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
 
-  const handleMobileClick = (item) => {
-    const url = item === "Home" ? "/" : `/?category=${item}`;
-    navigate(url, { replace: false });
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    closeMenu();
-  };
-
+  // Open mobile menu
   const openMenu = () => {
     setMenuVisible(true);
     setMobileOpen(true);
   };
 
+  // Close mobile menu
   const closeMenu = () => {
     setAnimateItems(false);
     setMobileOpen(false);
     setTimeout(() => setMenuVisible(false), 300);
   };
 
-  // Animate items on open
+  // Animate menu items on open
   useEffect(() => {
     if (mobileOpen) {
       const timer = setTimeout(() => setAnimateItems(true), 50);
@@ -47,11 +46,18 @@ export default function Header() {
     closeMenu();
   }, [location]);
 
+  // Navigate when a mobile menu item is clicked
+  const handleMobileClick = (item) => {
+    const url = item === "Home" ? "/" : `/?category=${item}`;
+    navigate(url, { replace: false });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    closeMenu();
+  };
+
   return (
     <header className="bg-white border-b shadow-sm fixed top-0 left-0 w-full z-50">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between relative">
-
-        {/* Left: Desktop Home */}
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6 uppercase text-sm font-semibold">
           <NavLink
             to="/"
@@ -68,33 +74,29 @@ export default function Header() {
           </NavLink>
         </nav>
 
-        {/* Center: Logo */}
+        {/* Logo */}
         <h1 className="text-2xl md:text-3xl font-extrabold text-black uppercase tracking-tight mx-auto">
           News<span className="text-red-600 ml-1">Today</span>
         </h1>
 
-        {/* Right: Desktop Date */}
+        {/* Desktop Date */}
         <div className="hidden md:flex flex-col items-end text-gray-600 text-sm font-medium">
           <span>{formattedDate}</span>
         </div>
 
-        {/* Mobile Hamburger / Cross */}
+        {/* Mobile Hamburger / Close Button */}
         <button
           className="md:hidden flex items-center justify-center w-8 h-8 z-50 text-gray-800"
           onClick={() => (mobileOpen ? closeMenu() : openMenu())}
         >
-          {mobileOpen ? (
-            <FiX size={24} className="transition-opacity duration-300" />
-          ) : (
-            <FiMenu size={24} className="transition-opacity duration-300" />
-          )}
+          {mobileOpen ? <FiX size={24} /> : <FiMenu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Menu & Background */}
+      {/* Mobile Menu */}
       {menuVisible && (
         <>
-          {/* Blurred Background */}
+          {/* Background overlay */}
           <div
             className={`fixed inset-0 bg-white/30 backdrop-blur-sm z-40 transition-opacity duration-300 ${
               mobileOpen ? "opacity-100" : "opacity-0"
@@ -102,22 +104,20 @@ export default function Header() {
             onClick={closeMenu}
           ></div>
 
-          {/* Sliding Menu under header */}
+          {/* Sliding menu panel */}
           <div
             className={`fixed top-16 right-0 h-[calc(100%-64px)] w-64 bg-white/95 shadow-lg z-50 transform transition-transform duration-300 ${
               mobileOpen ? "translate-x-0" : "translate-x-full"
             }`}
           >
-            {/* Menu Items */}
+            {/* Menu items */}
             <div className="mt-4 flex flex-col gap-2 px-4">
               {mobileCategories.map((item, idx) => (
                 <button
                   key={item}
                   onClick={() => handleMobileClick(item)}
                   className={`text-left py-3 px-3 rounded text-gray-800 font-medium hover:bg-gray-100 transition-all duration-500 ${
-                    animateItems
-                      ? "opacity-100 translate-x-0"
-                      : "opacity-0 translate-x-6"
+                    animateItems ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"
                   }`}
                   style={{ transitionDelay: `${idx * 75}ms` }}
                 >
@@ -126,7 +126,7 @@ export default function Header() {
               ))}
             </div>
 
-            {/* Mobile Date */}
+            {/* Mobile date */}
             <div className="absolute bottom-4 left-0 w-full text-center text-gray-500 text-xs">
               {formattedDate}
             </div>
