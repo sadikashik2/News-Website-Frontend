@@ -30,10 +30,10 @@ export default function Header() {
   const closeMenu = () => {
     setAnimateItems(false);
     setMobileOpen(false);
-    setTimeout(() => setMenuVisible(false), 300);
+    setTimeout(() => setMenuVisible(false), 300); // allow animation to finish
   };
 
-  // Animate menu items on open
+  // Animate menu items when mobile menu opens
   useEffect(() => {
     if (mobileOpen) {
       const timer = setTimeout(() => setAnimateItems(true), 50);
@@ -41,7 +41,7 @@ export default function Header() {
     }
   }, [mobileOpen]);
 
-  // Close menu on route change
+  // Close menu automatically when route changes
   useEffect(() => {
     closeMenu();
   }, [location]);
@@ -96,9 +96,9 @@ export default function Header() {
       {/* Mobile Menu */}
       {menuVisible && (
         <>
-          {/* Background overlay */}
+          {/* Background overlay (semi-transparent, does NOT blur header) */}
           <div
-            className={`fixed inset-0 bg-white/30 backdrop-blur-sm z-40 transition-opacity duration-300 ${
+            className={`fixed inset-0 bg-white/40 z-40 transition-opacity duration-300 ${
               mobileOpen ? "opacity-100" : "opacity-0"
             }`}
             onClick={closeMenu}
@@ -106,11 +106,11 @@ export default function Header() {
 
           {/* Sliding menu panel */}
           <div
-            className={`fixed top-16 right-0 h-[calc(100%-64px)] w-64 bg-white/95 shadow-lg z-50 transform transition-transform duration-300 ${
+            className={`fixed top-16 right-0 h-[calc(100%-64px)] w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
               mobileOpen ? "translate-x-0" : "translate-x-full"
             }`}
           >
-            {/* Menu items */}
+            {/* Menu Items */}
             <div className="mt-4 flex flex-col gap-2 px-4">
               {mobileCategories.map((item, idx) => (
                 <button
@@ -126,7 +126,7 @@ export default function Header() {
               ))}
             </div>
 
-            {/* Mobile date */}
+            {/* Mobile Date */}
             <div className="absolute bottom-4 left-0 w-full text-center text-gray-500 text-xs">
               {formattedDate}
             </div>
